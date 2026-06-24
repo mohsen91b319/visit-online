@@ -1,29 +1,22 @@
 
 exports.handler = async (event) => {
- const d = JSON.parse(event.body);
 
- const TOKEN = process.env.BOT_TOKEN;
- const CHAT_ID = process.env.CHAT_ID;
+const d = JSON.parse(event.body || "{}");
 
- const text = `📅 NEW APPOINTMENT\nName:${d.name}\nPhone:${d.phone}\nMsg:${d.msg}`;
+const text =
+`📅 NEW APPOINTMENT
+Name: ${d.name || "-"}
+Phone: ${d.phone || "-"}
+Msg: ${d.msg || "-"}`;
 
- await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`,{
- method:'POST',
- headers:{'Content-Type':'application/json'},
- body: JSON.stringify({
- chat_id: CHAT_ID,
- text,
- reply_markup:{
-   inline_keyboard:[
-     [
-       {text:"✅ Accept", callback_data:"acc"},
-       {text:"❌ Reject", callback_data:"rej"}
-     ],
-     [{text:"📅 Set Time", callback_data:"time"}]
-   ]
- }
- })
- });
+await fetch(`https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`,{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+chat_id: process.env.CHAT_ID,
+text
+})
+});
 
- return {statusCode:200, body:JSON.stringify({ok:true})};
+return {statusCode:200, body:JSON.stringify({ok:true})};
 };

@@ -1,17 +1,23 @@
+
 <!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>Visit Online v3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visit Online V4</title>
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
 <div class="card">
-  <h2 data-i18n="title">Select Language</h2>
+  <h2 id="title">Select Language</h2>
+
   <button onclick="setLang('fa')">فارسی</button>
   <button onclick="setLang('en')">English</button>
   <button onclick="setLang('ar')">العربية</button>
+
+  <br><br>
+  <button onclick="goApp()">Continue</button>
 </div>
 
 <script src="assets/i18n.js"></script>

@@ -1,34 +1,47 @@
 
-function openVisit(){
- const name = prompt("Name");
- const phone = prompt("Phone");
- const msg = prompt("Message");
-
- fetch('/.netlify/functions/sendAppointment',{
- method:'POST',
- headers:{'Content-Type':'application/json'},
- body: JSON.stringify({name,phone,msg})
- });
-
- alert("Sent");
+function goApp(){
+window.location.href="app.html";
 }
 
-async function openDocs(){
- const file = document.getElementById("fileInput").files[0];
- if(!file) return alert("No file");
+function showVisitForm(){
+document.getElementById("visitForm").classList.toggle("hidden");
+}
 
- const reader = new FileReader();
- reader.onload = async function(){
-   const base64 = reader.result;
+async function sendAppointment(){
 
-   fetch('/.netlify/functions/sendDocument',{
-     method:'POST',
-     headers:{'Content-Type':'application/json'},
-     body: JSON.stringify({file:base64})
-   });
+const name = document.getElementById("name").value;
+const phone = document.getElementById("phone").value;
+const msg = document.getElementById("msg").value;
 
-   alert("Uploaded");
- };
+await fetch("/.netlify/functions/sendAppointment",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({name,phone,msg})
+});
 
- reader.readAsDataURL(file);
+alert("Sent");
+}
+
+async function uploadFile(e){
+
+const file = e.target.files[0];
+if(!file) return;
+
+const reader = new FileReader();
+
+reader.onload = async function(){
+
+await fetch("/.netlify/functions/sendDocument",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+file:reader.result,
+name:file.name
+})
+});
+
+alert("Uploaded");
+};
+
+reader.readAsDataURL(file);
 }

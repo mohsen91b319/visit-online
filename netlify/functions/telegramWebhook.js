@@ -1,21 +1,30 @@
 
 exports.handler = async (event) => {
- const update = JSON.parse(event.body || "{}");
 
- if(update.callback_query){
-   const data = update.callback_query.data;
+const update = JSON.parse(event.body || "{}");
 
-   let msg = "Unknown action";
+if(!update.callback_query){
+return {statusCode:200, body:"ok"};
+}
 
-   if(data === "acc") msg = "Appointment Accepted";
-   if(data === "rej") msg = "Appointment Rejected";
-   if(data === "time") msg = "Set time requested";
+const cb = update.callback_query;
+const data = cb.data;
+const chatId = cb.message.chat.id;
 
-   return {
-     statusCode:200,
-     body: JSON.stringify({ok:true})
-   };
- }
+let text = "Unknown";
 
- return {statusCode:200, body:"ok"};
+if(data === "acc") text = "✅ Accepted";
+if(data === "rej") text = "❌ Rejected";
+if(data === "time") text = "📅 Set Time Requested";
+
+await fetch(`https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`,{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+chat_id: chatId,
+text
+})
+});
+
+return {statusCode:200, body:"ok"};
 };

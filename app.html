@@ -1,22 +1,37 @@
+
 <!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>Visit Online</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard</title>
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
 <div class="card">
-  <h2 data-i18n="visit">Dashboard</h2>
 
-  <button onclick="openVisit()">📅 Visit Online</button>
-  <button onclick="openDocs()">📎 Upload Documents</button>
+<h2 data-i18n="dashboard">Dashboard</h2>
 
-  <input type="file" id="fileInput">
+<button onclick="showVisitForm()">📅 Online Visit</button>
+
+<button onclick="document.getElementById('file').click()">📎 Upload Documents</button>
+<input id="file" type="file" hidden onchange="uploadFile(event)">
+
+<div id="visitForm" class="hidden">
+
+<input id="name" placeholder="Name">
+<input id="phone" placeholder="Phone">
+<textarea id="msg" placeholder="Message"></textarea>
+
+<button onclick="sendAppointment()">Send</button>
+
+</div>
+
 </div>
 
 <script src="assets/i18n.js"></script>
 <script src="assets/app.js"></script>
+
 </body>
 </html>
