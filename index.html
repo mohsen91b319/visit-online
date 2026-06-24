@@ -2,24 +2,19 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Visit Online</title>
-<link rel="stylesheet" href="style.css">
+<title>Visit Online v3</title>
+<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
-<div id="lang">
-  <h2>Select Language</h2>
+<div class="card">
+  <h2 data-i18n="title">Select Language</h2>
   <button onclick="setLang('fa')">فارسی</button>
   <button onclick="setLang('en')">English</button>
   <button onclick="setLang('ar')">العربية</button>
 </div>
 
-<div id="app" class="hidden">
-  <h2>Dashboard</h2>
-  <button onclick="appointment()">📅 Visit Online</button>
-  <button onclick="documentReq()">📎 Upload Documents</button>
-</div>
-
-<script src="app.js"></script>
+<script src="assets/i18n.js"></script>
+<script src="assets/app.js"></script>
 </body>
 </html>
