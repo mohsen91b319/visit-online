@@ -1,3 +1,4 @@
+
 function setLang(l){
 localStorage.setItem('lang',l);
 document.getElementById('lang').classList.add('hidden');
@@ -5,27 +6,29 @@ document.getElementById('app').classList.remove('hidden');
 }
 
 function appointment(){
-const name=prompt('name');
-const phone=prompt('phone');
-const msg=prompt('message');
+const name = prompt('Name');
+const phone = prompt('Phone');
+const msg = prompt('Message');
 
 fetch('/.netlify/functions/sendAppointment',{
 method:'POST',
-body:JSON.stringify({name,phone,msg})
+headers:{'Content-Type':'application/json'},
+body: JSON.stringify({name,phone,msg})
 });
 
-alert('sent');
+alert('Sent');
 }
 
 function documentReq(){
-const name=prompt('name');
-const phone=prompt('phone');
-const file=prompt('file url');
+const name = prompt('Name');
+const phone = prompt('Phone');
+const file = prompt('File URL');
 
 fetch('/.netlify/functions/sendDocument',{
 method:'POST',
-body:JSON.stringify({name,phone,file})
+headers:{'Content-Type':'application/json'},
+body: JSON.stringify({name,phone,file})
 });
 
-alert('sent');
+alert('Sent');
 }

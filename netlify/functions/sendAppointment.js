@@ -1,3 +1,4 @@
+
 exports.handler = async (event) => {
 const data = JSON.parse(event.body);
 
@@ -7,9 +8,9 @@ const CHAT_ID = process.env.CHAT_ID;
 await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`,{
 method:'POST',
 headers:{'Content-Type':'application/json'},
-body:JSON.stringify({
+body: JSON.stringify({
 chat_id: CHAT_ID,
-text:`#APPOINTMENT\nName:${data.name}\nPhone:${data.phone}\nMsg:${data.msg}`
+text:`#APPOINTMENT\nName:${data.name}\nPhone:${data.phone}\nMessage:${data.msg}`
 })
 });
 
