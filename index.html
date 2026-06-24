@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Visit Online</title>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<div id="lang">
+  <h2>Select Language</h2>
+  <button onclick="setLang('fa')">فارسی</button>
+  <button onclick="setLang('ar')">العربية</button>
+  <button onclick="setLang('en')">English</button>
+</div>
+
+<div id="app" class="hidden">
+  <h2>Dashboard</h2>
+  <button onclick="appointment()">📅 Appointment</button>
+  <button onclick="documentReq()">📎 Documents</button>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
